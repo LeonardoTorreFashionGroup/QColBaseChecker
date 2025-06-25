@@ -38,7 +38,7 @@ def corrigir_qcol(
     for idx, row in enumerate(data, start=1):
         cell_ref = row[0]    # coluna A
         formula    = row[4]  # coluna E
-        print(f"     ⌛ A corrigir célula {idx} de {len(data)}...", end="\r")
+        print(f"     A corrigir célula {idx} de {len(data)}... ⌛", end="\r")
         ws_c.range(cell_ref).api.FormulaLocal = formula
     print()
 

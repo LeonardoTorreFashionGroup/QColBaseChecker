@@ -69,7 +69,7 @@ def verificar_versus_referencia(
                 esperado = f2.strip()
                 erros.append(
                     (addr, linha, addr[:-len(str(linha))], tipo, esperado, atual))
-        print(f"   ⌛A validar célula {linha} de {fim}...", end="\r")
+        print(f"   A validar célula {linha} de {fim}... ⌛", end="\r")
     print()
 
     wb1.close()

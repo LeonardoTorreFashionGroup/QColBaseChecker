@@ -27,6 +27,7 @@ def main():
         sys.exit(1)
     temp_orig, temp_ref = temps
 
+
     resp = input("\nCabeçalhos OK. Avançar p/ validação de fórmulas? (S/N): ").strip().lower()
     if resp != 's':
         print("Operação cancelada pelo utilizador."); sys.exit(0)
