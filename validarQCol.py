@@ -14,7 +14,7 @@ def verificar_versus_referencia(
     caminho_original: str,
     caminho_referencia: str
 ) -> Optional[str]:
-    print("\n[3/4] Iniciando verificação de fórmulas…")
+    print("\n[4/5] A iniciar verificação das fórmulas…")
 
     # cópias temporárias
     tmp1 = gerar_temp_path(caminho_original)
@@ -49,8 +49,7 @@ def verificar_versus_referencia(
     # determinar última linha
     ultima = ws1.range(f"A{ws1.cells.last_cell.row}").end("up").row
     fim = max(ultima, LINHA_INICIO + 1)
-    print(f"   Validando linhas {LINHA_INICIO} → {fim}")
-
+    
     erros = []
     for linha in range(LINHA_INICIO, fim + 1):
         for offset in range(1, COL_FIM - COL_INICIO + 2):
@@ -70,7 +69,7 @@ def verificar_versus_referencia(
                 esperado = f2.strip()
                 erros.append(
                     (addr, linha, addr[:-len(str(linha))], tipo, esperado, atual))
-        print(f"   Linha {linha}/{fim} processada", end="\r")
+        print(f"   ⌛A validar célula {linha} de {fim}...", end="\r")
     print()
 
     wb1.close()
@@ -98,5 +97,5 @@ def verificar_versus_referencia(
     wb_out.save(log)
     wb_out.close()
     out.quit()
-    print(f"⚠️ Erros detectados. Relatório: {log}")
+    print(f"\nErros detectados. Relatório em: {log} ⚠️")
     return log

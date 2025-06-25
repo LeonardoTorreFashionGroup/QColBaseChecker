@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import sys
 from pathlib import Path
 from headers    import comparar_colunas_e_gerar_temporarios
@@ -17,29 +16,27 @@ def main():
     if len(sys.argv) == 3:
         orig, ref = sys.argv[1], sys.argv[2]
     else:
-        print("FICHEIROS DE USO :")
-        print(" QUADRO COLECAO  :", USO_ORIG)
-        print(" QUADRO BASE     :", USO_REF, "\n")
+        print("[1/5] Ficheiros originais em uso:")
+        print("   • Quadro Coleção :", USO_ORIG)
+        print("   • Quadro Base    :", USO_REF, "\n")
         orig, ref = USO_ORIG, USO_REF
 
-    # 1) comparar cabeçalhos
+    # comparar cabeçalhos
     temps = comparar_colunas_e_gerar_temporarios(orig, ref)
     if not temps:
         sys.exit(1)
     temp_orig, temp_ref = temps
 
-    # 2) perguntar se segue para fórmulas
     resp = input("\nCabeçalhos OK. Avançar p/ validação de fórmulas? (S/N): ").strip().lower()
     if resp != 's':
         print("Operação cancelada pelo utilizador."); sys.exit(0)
 
-    # 3) validar fórmulas
+    # validar fórmulas
     log_path = verificar_versus_referencia(orig, ref)
     if not log_path:
         print("\nTudo OK, sem erros de fórmula.")
         return
 
-    # 4) perguntar se corrige automaticamente
     resp2 = input("\nDeseja aplicar correções automáticas? (S/N): ").strip().lower()
     if resp2 == 's':
         result = corrigir_qcol(orig, log_path)
