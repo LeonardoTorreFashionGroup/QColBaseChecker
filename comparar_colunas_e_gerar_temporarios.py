@@ -11,11 +11,6 @@ def comparar_colunas_e_gerar_temporarios(
     caminho_1_orig: str,
     caminho_2_orig: str
 ) -> Optional[Tuple[str, str]]:
-    """
-    Compara cabeçalhos (linha 9) em dois ficheiros Excel.
-    Se não houver diferenças de nome ou posição, copia-os para temporários
-    e retorna (temp1, temp2). Caso contrário imprime as diferenças e retorna None.
-    """
     nome1 = os.path.basename(caminho_1_orig)
     nome2 = os.path.basename(caminho_2_orig)
 

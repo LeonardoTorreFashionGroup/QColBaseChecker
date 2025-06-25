@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import sys
 from pathlib import Path
 
@@ -6,8 +5,7 @@ from comparar_colunas_e_gerar_temporarios import comparar_colunas_e_gerar_tempor
 from verificar_versus_referencia import verificar_versus_referencia
 
 USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_V73_JF.xlsm"
-USO_REF = r"H:\Processos Gerais\PV20- Gestão do produto\Quadros da coleção base\QCol. Base_V39 LFC.xlsm"
-
+USO_REF = r"H:\Processos Gerais\PV20- Gestão do produto\Quadros da coleção base\QCol. Base_V38 LFC.xlsm"
 
 USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_TESTE_LFC.xlsm"
 
@@ -28,6 +26,7 @@ def main():
         sys.exit(1)
     temp_orig, temp_ref = res
 
+    # perguntar antes de prosseguir
     resp = input(
         "\nOs cabeçalhos conferem. Deseja avançar para as validações de fórmula? (S/N): ").strip().lower()
     if resp != 's':
@@ -38,10 +37,10 @@ def main():
     print("\n=== 2. VALIDAÇÕES DO QUADRO DE COLEÇÃO ===")
     rel = verificar_versus_referencia(orig, ref)
     if rel:
-        print("\n⚠️ ERROS ENCONTRADOS! VEJA O RELATÓRIO EM:\n   ", rel)
+        print("\nERROS ENCONTRADOS! VEJA O RELATÓRIO EM:\n   ", rel)
         sys.exit(1)
 
-    print("\n✅ TUDO VALIDADO COM SUCESSO!")
+    print("\nTUDO VALIDADO COM SUCESSO!")
 
 
 if __name__ == "__main__":

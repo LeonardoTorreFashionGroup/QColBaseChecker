@@ -13,11 +13,6 @@ def verificar_versus_referencia(
     caminho_original: str,
     caminho_referencia: str
 ) -> Optional[str]:
-    """
-    Copia ambos para temp, varre cada célula (da linha 10 até ao fim),
-    deteta #REF!/#N/A/dependências externas e gera um relatório Excel.
-    Retorna o path do relatório se houver erros, ou None.
-    """
     print("\n=== INÍCIO DA VERIFICAÇÃO COMPLETA ===")
 
     # copiar para temp
