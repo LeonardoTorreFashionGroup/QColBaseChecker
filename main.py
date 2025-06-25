@@ -1,23 +1,25 @@
 import sys
 from pathlib import Path
 
-from comparar_colunas_e_gerar_temporarios import comparar_colunas_e_gerar_temporarios
-from verificar_versus_referencia import verificar_versus_referencia
+from headers import comparar_colunas_e_gerar_temporarios
+from validarQCol import verificar_versus_referencia
+from corrigirQCol import corrigir_qcol
 
 USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_V73_JF.xlsm"
-USO_REF = r"H:\Processos Gerais\PV20- Gestão do produto\Quadros da coleção base\QCol. Base_V38 LFC.xlsm"
+USO_REF = r"H:\Processos Gerais\PV20- Gestão do produto\Quadros da coleção base\QCol. Base_V39 LFC.xlsm"
 
-USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_TESTE_LFC.xlsm"
+USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_TESTE_LFC.xlsm"  # TEST
+USO_REF = r"H:\Processos Gerais\PV20- Gestão do produto\Quadros da coleção base\QCol. Base_V39 LFC.xlsm"  # TEST
+
+
+USO_ORIG = r"H:\Informatica\LEONARDOCRUZ\Projetos\QColChecker\temp_data\QCol. Base_TUPV26_TESTE_LFC_corrigido_2025-06-25-12_14_37.xlsm"
 
 
 def main():
-    if len(sys.argv) == 3:
-        orig, ref = sys.argv[1], sys.argv[2]
-    else:
-        print("=== INÍCIO ===")
-        print(" ORIGINAL   :", USO_ORIG)
-        print(" REFERÊNCIA :", USO_REF, "\n")
-        orig, ref = USO_ORIG, USO_REF
+    print("=== INÍCIO ===")
+    print(" ORIGINAL   :", USO_ORIG)
+    print(" REFERÊNCIA :", USO_REF, "\n")
+    orig, ref = USO_ORIG, USO_REF
 
     # validar headers
     print("=== 1. VALIDAR HEADERS ===")
@@ -38,9 +40,17 @@ def main():
     rel = verificar_versus_referencia(orig, ref)
     if rel:
         print("\nERROS ENCONTRADOS! VEJA O RELATÓRIO EM:\n   ", rel)
-        sys.exit(1)
+        # sys.exit(1)
 
-    print("\nTUDO VALIDADO COM SUCESSO!")
+    resp = input(
+        "Deseja aplicar correções automáticas ao ficheiro? (S/N): ").strip().lower()
+    if resp == 's':
+        path_corr = corrigir_qcol(USO_ORIG, rel)
+        if not path_corr:
+            sys.exit(1)
+        print("Ficheiro corrigido disponível em:", path_corr)
+    else:
+        print("Correções automáticas canceladas pelo utilizador.")
 
 
 if __name__ == "__main__":

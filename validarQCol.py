@@ -9,6 +9,7 @@ COL_INICIO = 1
 COL_FIM = 219
 LINHA_INICIO = 10
 
+
 def verificar_versus_referencia(
     caminho_original: str,
     caminho_referencia: str
@@ -41,8 +42,10 @@ def verificar_versus_referencia(
 
     # remover filtros/ocultações
     try:
-        if ws1.api.AutoFilterMode: ws1.api.AutoFilterMode = False
-    except: pass
+        if ws1.api.AutoFilterMode:
+            ws1.api.AutoFilterMode = False
+    except:
+        pass
     for r in ws1.range("A1").expand("down").rows:
         r.api.EntireRow.Hidden = False
     for c in ws1.range("A1").expand("right").columns:
@@ -77,7 +80,8 @@ def verificar_versus_referencia(
                 )
                 atual = (f1 or txt).strip()
                 esperado = f2.strip()
-                erros.append((addr, linha, addr[:-len(str(linha))], tipo, esperado, atual))
+                erros.append(
+                    (addr, linha, addr[:-len(str(linha))], tipo, esperado, atual))
     print()  # quebra progresso
 
     wb1.close()
@@ -99,8 +103,10 @@ def verificar_versus_referencia(
     ]
     for idx, row in enumerate(erros, start=2):
         r = list(row)
-        if r[5].startswith("="): r[5] = "'" + r[5]
-        if r[4].startswith("="): r[4] = "'" + r[4]
+        if r[5].startswith("="):
+            r[5] = "'" + r[5]
+        if r[4].startswith("="):
+            r[4] = "'" + r[4]
         ws_out.range(f"A{idx}").value = r
 
     wb_out.save(log)
