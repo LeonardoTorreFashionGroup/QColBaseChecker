@@ -4,11 +4,11 @@ from headers    import comparar_colunas_e_gerar_temporarios
 from validarQCol import verificar_versus_referencia
 from corrigirQCol import corrigir_qcol
 
-USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_V73_JF.xlsm"
+USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_V74_LFC.xlsm"
 USO_REF  = r"H:\Processos Gerais\PV20- Gestão do produto\Quadros da coleção base\QCol. Base_V39 LFC.xlsm"
 
-USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_TESTE_LFC.xlsm" #TEST
-USO_REF  = r"H:\Processos Gerais\PV20- Gestão do produto\Quadros da coleção base\QCol. Base_V39 LFC.xlsm" #TEST
+#USO_ORIG = r"H:\COLECÇÕES TORRE\PV 2026\TORRE UOMO\QCol. Base_TUPV26_TESTE_LFC.xlsm" #TEST
+#USO_REF  = r"H:\Processos Gerais\PV20- Gestão do produto\Quadros da coleção base\QCol. Base_V39 LFC.xlsm" #TEST
 
 
 def main():
