@@ -1,3 +1,5 @@
+# main.py
+
 import sys
 from pathlib import Path
 from headers    import comparar_colunas_e_gerar_temporarios
